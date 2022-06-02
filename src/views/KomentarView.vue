@@ -6,15 +6,15 @@ import CardIdentitas from '../components/CardIdentitas.vue';
 <template>
   <main>
     <div class="app">
-      <div class="container mt-5">
+      <div class="container mt-0">
         <div class="row justify-content-center">
           <div class="col-md-12">
             <div class="card">
-             <router-link :class="['btn btn-md btn-dark mb-1']" to="/create">ADD LIST</router-link>
+              <router-link :class="['btn btn-md btn-dark mb-1']" to="/create">ADD LIST</router-link>
               <div class="card-body">
                 <hr>
-                <div class="table-responsive mt-1">
-                  <table class="table table-dark table-striped-columns">
+                <div class="table-responsive">
+                  <table class="table table-dark ">
                     <thead>
                       <tr>
                         <th>Name</th>
@@ -28,14 +28,17 @@ import CardIdentitas from '../components/CardIdentitas.vue';
                         <td>{{ post.name }}</td>
                         <td>{{ post.email }}</td>
                         <td>{{ post.body }}</td>
-                        <td class="text-center" style="align-items: center; justify-content: space-between; flex-wrap: wrap;" >
-                          <router-link :to="{ name: 'edit', params: { id: posts.id } }"
-                            class="btn btn-sm btn-success mr-2">EDIT</router-link>
-                          <button @click.prevent="PostDelete(post.id)" class="btn btn-sm btn-danger">DELETE</button>
+                        <td class="text-center">
+                          <div class="d-grid gap-2">
+                            <router-link :to="{ name: 'edit', params: { id: posts.id } }"
+                              class="btn btn-sm btn-success mr-2">EDIT</router-link>
+                            <button @click.prevent="PostDelete(post.id)" class="btn btn-sm btn-danger">DELETE</button>
+                          </div>
+
                         </td>
                       </tr>
 
-                   
+
                     </tbody>
                   </table>
                 </div>
@@ -47,7 +50,7 @@ import CardIdentitas from '../components/CardIdentitas.vue';
       </div>
     </div>
 
-  
+
     <Header></Header>
   </main>
 </template>
@@ -58,30 +61,29 @@ import CardIdentitas from '../components/CardIdentitas.vue';
 
 import axios from 'axios';
 
- export default {
+export default {
 
-  data () {
+  data() {
     return {
-      posts:[]
+      posts: []
     }
   },
-  created () {
+  created() {
     axios
       .get('https://jsonplaceholder.typicode.com/posts/1/comments')
       .then(response => (this.posts = response.data))
   },
-        methods: {
-            PostDelete(id)
-            {
-                axios.delete(`https://jsonplaceholder.typicode.com/posts/1/comments/${id}`)
-                    .then(response => {
-                        this.posts.splice(this.posts.indexOf(id), 1);
-                        console.log(response);
-                    }).catch(error => {
-                    console.log(error.response);
-                });
-            }
-        }
+  methods: {
+    PostDelete(id) {
+      axios.delete(`https://jsonplaceholder.typicode.com/posts/1/comments/1${id}`)
+        .then(response => {
+          this.posts.splice(this.posts.indexOf(id), 1);
+          console.log(response);
+        }).catch(error => {
+          console.log(error.response);
+        });
+    }
+  }
 
 }
 
