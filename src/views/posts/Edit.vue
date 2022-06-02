@@ -1,5 +1,5 @@
 <template>
-    <div class="posts">
+    <div class="create">
         <div class="container mt-5">
             <div class="row justify-content-center">
                 <div class="col-md-12">
@@ -80,7 +80,7 @@ export default {
             axios.put(`http://localhost:8000/posts/${this.$route.params.id}`, this.post)
                 .then((response) => {
                     this.$router.push({
-                        name: 'posts'
+                        name: 'create'
                     });
                     console.log(response);
                 }).catch(error => {

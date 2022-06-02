@@ -5,7 +5,7 @@ import CardIdentitas from '../components/CardIdentitas.vue';
 
 <template>
   <main>
-    <div class="app">
+    <div class="create">
       <div class="container mt-0">
         <div class="row justify-content-center">
           <div class="col-md-12">
@@ -63,7 +63,7 @@ import axios from 'axios';
 
 export default {
 
-  data() {
+  setup() {
     return {
       posts: []
     }

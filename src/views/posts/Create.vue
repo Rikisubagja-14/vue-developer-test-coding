@@ -1,5 +1,5 @@
 <template>
-    <div class="posts">
+    <div class="create">
         <div class="container mt-5">
             <div class="row justify-content-center">
                 <div class="col-md-12">
@@ -14,9 +14,9 @@
                                     <label>Name</label>
                                     <input type="text" class="form-control" v-model="post.name"
                                         placeholder="Input Name">
-                                    <div v-if="validation.title">
+                                    <div v-if="validation.name">
                                         <div class="alert alert-danger mt-1" role="alert">
-                                            {{ validation.title[0] }}
+                                            {{ validation.name[0] }}
                                         </div>
                                     </div>
                                 </div>
@@ -26,9 +26,9 @@
                                     <label>Email</label>
                                     <input type="text" class="form-control" v-model="post.email"
                                         placeholder="Input Email">
-                                    <div v-if="validation.title">
+                                    <div v-if="validation.email">
                                         <div class="alert alert-danger mt-1" role="alert">
-                                            {{ validation.title[0] }}
+                                            {{ validation.email[0] }}
                                         </div>
                                     </div>
                                 </div>
@@ -37,9 +37,9 @@
                                     <label>Comment</label>
                                     <textarea class="form-control" v-model="post.comments" rows="5"
                                         placeholder="Comments....."></textarea>
-                                    <div v-if="validation.content">
+                                    <div v-if="validation.comments">
                                         <div class="alert alert-danger mt-1" role="alert">
-                                            {{ validation.content[0] }}
+                                            {{ validation.comments[0] }}
                                         </div>
                                     </div>
                                 </div>
@@ -47,7 +47,7 @@
                                 <div class="d-grid gap-2">
                                     <router-link :to="{ name: 'KomentarView' }" class="btn btn-sm btn-info mr-2">BACK
                                     </router-link>
-                                    
+
                                     <button type="submit" class="btn btn-sm btn-primary mr-1">SAVE</button>
                                     <button type="reset" class="btn btn-sm btn-danger mr-2">MOVE</button>
                                 </div>
@@ -68,7 +68,9 @@ import axios from 'axios'
 export default {
     data() {
         return {
-            post: {},
+            post: {
+
+            },
             validation: []
         }
     },
@@ -77,7 +79,7 @@ export default {
             axios.post('https://jsonplaceholder.typicode.com/posts/1/comments', this.post)
                 .then((response) => {
                     this.$router.push({
-                        name: 'posts'
+                        name: 'create'
                     });
                     console.log(response.data);
                 }).catch(error => {
